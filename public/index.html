@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Doc-Intel Pro</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --green: #22c55e;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.8);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(59,130,246,0.15);
+      color: var(--accent-light);
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(59,130,246,0.3);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #e2e8f0, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Features grid */
+    .features {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .card-icon.blue  { background: rgba(59,130,246,0.15); }
+    .card-icon.green { background: rgba(34,197,94,0.15); }
+    .card-icon.purple { background: rgba(168,85,247,0.15); }
+    .card-icon.orange { background: rgba(249,115,22,0.15); }
+    .card-icon.red    { background: rgba(239,68,68,0.15); }
+    .card-icon.teal   { background: rgba(20,184,166,0.15); }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Architecture */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+    .section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .section .subtitle {
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Tech stack pills */
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Architecture flow */
+    .flow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .flow-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      min-width: 280px;
+      text-align: center;
+    }
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    /* Use cases */
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .use-case {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .use-case .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .use-case h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .use-case p { font-size: 0.8rem; color: var(--muted); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent-light); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 3rem 1.25rem 2rem; }
+      .features { padding: 1rem 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Universal Doc-Intel Pro</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#tech">Tech Stack</a>
+      <a href="#use-cases">Use Cases</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="badge">RAG-Powered AI Chatbot</span>
+    <h1>Advanced Document Intelligence &amp; Web Analysis</h1>
+    <p>Upload documents, provide web URLs, and interact with them using a conversational AI interface. Get accurate, context-aware answers with references &mdash; powered by Mistral AI, LangChain, and ChromaDB.</p>
+  </section>
+
+  <section class="features" id="features">
+    <div class="card">
+      <div class="card-icon blue">&#x1F916;</div>
+      <h3>AI Chat System</h3>
+      <p>Conversational AI with multi-session chat history, context-aware responses, and standalone question reformulation.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon green">&#x1F4C2;</div>
+      <h3>Document Intelligence</h3>
+      <p>Supports PDF, CSV, DOCX, images, and web URLs. Handles large files up to 200MB+ with optimized loading.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon purple">&#x1F9E0;</div>
+      <h3>RAG Engine</h3>
+      <p>Mistral AI Embeddings with Chroma Vector Database and LangChain Retrieval Chain for context-based answering.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon orange">&#x1F4AC;</div>
+      <h3>Smart Chat UI</h3>
+      <p>Clean Streamlit interface with chat history sidebar, new chat sessions, and source references for every response.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon red">&#x1F50D;</div>
+      <h3>History-Aware Retrieval</h3>
+      <p>Reformulates questions based on conversation history to provide coherent multi-turn responses.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon teal">&#x1F512;</div>
+      <h3>Secure API Handling</h3>
+      <p>Environment variable support with .env file usage for safe API key management and protection.</p>
+    </div>
+  </section>
+
+  <section class="section" id="architecture">
+    <h2>System Architecture</h2>
+    <p class="subtitle">How your query flows through the RAG pipeline</p>
+    <div class="flow">
+      <div class="flow-step">User Input</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">Streamlit UI</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">Document Loader (PDF / CSV / Image / URL)</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">Text Splitter (Chunking)</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">Mistral Embeddings</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">Chroma Vector Database</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">History-Aware Retriever</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">RAG Chain &rarr; Mistral LLM</div>
+      <div class="flow-arrow">&#x2193;</div>
+      <div class="flow-step">AI Response with References</div>
+    </div>
+  </section>
+
+  <section class="section" id="tech">
+    <h2>Tech Stack</h2>
+    <p class="subtitle">Built with modern AI and web technologies</p>
+    <div class="tech-grid">
+      <span class="pill">Python</span>
+      <span class="pill">Streamlit</span>
+      <span class="pill">LangChain</span>
+      <span class="pill">Mistral AI</span>
+      <span class="pill">ChromaDB</span>
+      <span class="pill">PyPDFLoader</span>
+      <span class="pill">CSVLoader</span>
+      <span class="pill">WebBaseLoader</span>
+      <span class="pill">dotenv</span>
+    </div>
+  </section>
+
+  <section class="section" id="use-cases">
+    <h2>Use Cases</h2>
+    <p class="subtitle">Applicable across industries and domains</p>
+    <div class="use-cases">
+      <div class="use-case">
+        <div class="icon">&#x1F4DA;</div>
+        <h4>Education</h4>
+        <p>Ask questions from books and notes</p>
+      </div>
+      <div class="use-case">
+        <div class="icon">&#x1F3E5;</div>
+        <h4>Healthcare</h4>
+        <p>Medical document analysis</p>
+      </div>
+      <div class="use-case">
+        <div class="icon">&#x1F3DB;</div>
+        <h4>Government</h4>
+        <p>Policy and legal document analysis</p>
+      </div>
+      <div class="use-case">
+        <div class="icon">&#x1F3E2;</div>
+        <h4>Business</h4>
+        <p>Report and data analysis</p>
+      </div>
+      <div class="use-case">
+        <div class="icon">&#x1F310;</div>
+        <h4>Research</h4>
+        <p>Web-based knowledge extraction</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by <strong>Deepak Prajapati</strong> &mdash; B.Tech CSE &mdash; GenAI and LLM with Advanced RAG</p>
+    <p style="margin-top:0.5rem;">MIT License</p>
+  </footer>
+
+</body>
+</html>
