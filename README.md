@@ -259,39 +259,6 @@ Ask questions
 
 ### Step 5
 
-Get AI answers with references
-
----
-
-# 📸 Application Screenshots
-
-## Home Interface
-
-Add screenshot here
-
-```
-<img width="1887" height="1152" alt="image" src="https://github.com/user-attachments/assets/01451b45-b4ac-49a1-bb28-7d32e7c25082" />
-
-```
-
----
-
-## Document Upload
-
-```
-images/upload.png
-```
-
----
-
-## Chat Interface
-
-```
-images/chat.png
-```
-
----
-
 # 📊 Use Cases
 
 ## 📚 Education
