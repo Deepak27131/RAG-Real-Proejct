@@ -1,25 +1,15 @@
-# Core Frameworks
+streamlit
 langchain
-langchain-core
 langchain-community
+langchain-core
 langchain-text-splitters
-
-# LLM & Embeddings (Mistral)
 langchain-mistralai
-
-# Vector Database
 chromadb
-
-# Document Loaders & Parsing
+python-dotenv
 pypdf
-unstructured[all-docs]
-python-magic; sys_platform != 'win32'
-python-magic-bin; sys_platform == 'win32'
-
-# Frontend & Environment
-streamlit>=1.35.0
-python-dotenv>=1.0.1
-
-# Performance & OCR
-sentence-transformers==5.3.0
-rapidocr-onnxruntime==1.2.3
+pandas
+requests
+beautifulsoup4
+lxml
+unstructured
+tqdm
